@@ -248,32 +248,32 @@ SKG-IF Link entity relies on active stream vocabulary, rel : [https://www.w3.org
     },
 ```
 
-##  Validate a local server implementation compliance with the SKG-IF OpenAPI.
+##  Validate a server implementation compliance with the SKG-IF OpenAPI specification.
 
-* See : https://docs.google.com/document/d/1t7b7h28UTtM56Sda4NGJIp0hnQfGbcVVGn12fny9wfI/edit?tab=t.0
-* Read the “validation process” and “hackathon” paragraphs at the beginning of this document. 
-* You can include the PRISM proxy server in your CI/CD pipeline.
+* See the [SKG-IF OpenAPI Implementer documentation](https://docs.google.com/document/d/1t7b7h28UTtM56Sda4NGJIp0hnQfGbcVVGn12fny9wfI/edit?tab=t.0#heading=h.hso3muyqtlhx)
+  * Read the “validation process” and “hackathon” paragraphs at the beginning of this document.
+  * The document describes, how you can use the [PRISM proxy server](https://docs.stoplight.io/docs/prism/) to validate your implementation against the SKG-IF OpenAPI specification.
 
-##  Search filter formats 
+##  Search filter formats
 
 ###  Filter format identifier ids
 
 On this the get list of entity URLs like `https://acme.com/skg-if/api/products?filter=identifiers.id:xxx&page=1`.
 You may wonder what is the supported format for `xxx` identifiers ids.
 
-| Simple identifier | URL identifier | 
+| Simple identifier | URL identifier |
 | ----- | ----- |
 | 10.1609/icwsm.v15i1.18053  |  https://doi.org/10.1609/icwsm.v15i1.18053 |
 | 0000-0002-5355-2576 | https://orcid.org/0000-0002-5355-2576 |
 
 For external identifiers like DOIs, Orcids, the server :
-* MUST support simple identifiers 
+* MUST support simple identifiers
 * SHOULD support URL identifiers.
 
-See how existing APIs support these patterns. 
+See how existing APIs support these patterns.
 
-| Query | SKG-IF Query | Equiv. Query OpenAlex | Equiv. Query Crossref | Equiv. Query OpenAIRE | 
-| ----- | ----- | ----- | ----- | ----- | 
+| Query | SKG-IF Query | Equiv. Query OpenAlex | Equiv. Query Crossref | Equiv. Query OpenAIRE |
+| ----- | ----- | ----- | ----- | ----- |
 | simple identifier | `products?filter=identifiers.id:10.1609/icwsm.v15i1.18053` | https://api.openalex.org/works?filter=doi:10.1609/icwsm.v15i1.18053 | https://api.crossref.org/works?filter=doi:10.1039/d1cb00160d  | https://api.openaire.eu/graph/v1/researchProducts?pid=10.1038/s41563-023-01669-z|
 | simple identifier escaped | `products?filter=identifiers.id:10.1609%2Ficwsm.v15i1.18053` | https://api.openalex.org/works?filter=doi:10.1609%2Ficwsm.v15i1.18053  | https://api.crossref.org/works?filter=doi:10.1039%2Fd1cb00160d | https://api.openaire.eu/graph/v1/researchProducts?pid=10.1038%2Fs41563-023-01669-z |
 | URL identifier | `products?filter=identifiers.id:https%3A%2F%2Fdoi.org%2F10.1609%2Ficwsm.v15i1.18053` | https://api.openalex.org/works?filter=doi:https%3A%2F%2Fdoi.org%2F10.1609%2Ficwsm.v15i1.18053  | https://api.crossref.org/works?filter=doi:https%3A%2F%2Fdoi.org%2F10.1609%2Ficwsm.v15i1.18053  | _https://api.openaire.eu/graph/v1/researchProducts?pid=https%3A%2F%2Fdoi.org%2F10.1609%2Ficwsm.v15i1.18053_ KO |
